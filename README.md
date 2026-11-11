@@ -1,21 +1,19 @@
-# velo-llvm-builds
+# llvm-builds
 
-Prebuilt LLVM for [velo-toolchain](https://github.com/gadgetoid/velo-toolchain)'s SH3 target and for jornada-72x-tools (ARM, Windows CE 3.0): clang, lld and the LLVM tools with the SuperH (SH-3, Windows CE), ARM and MIPS targets, from the `wince-arm` branch of [Gadgetoid/llvm-project](https://github.com/Gadgetoid/llvm-project/tree/wince-arm), which builds on `wince-sh3`.
+Prebuilt LLVM for [grimace](https://github.com/grimace-sdk/grimace): clang, lld and the LLVM tools with the SuperH (SH-3, Windows CE), ARM (Windows CE) and MIPS targets, from the `wince-arm` branch of [grimace-sdk/llvm-project](https://github.com/grimace-sdk/llvm-project/tree/wince-arm), which builds on `wince-sh3`. Its `armv4-unknown-none-wince` target follows Microsoft's Windows CE ARM calling standard, which no LLVM release has.
 
-Downloads are on the [releases](../../releases) page, for macOS (Apple Silicon) and Linux (x86_64). Unpack one and point velo-toolchain at it:
+Downloads are on the [releases](../../releases) page, for macOS (Apple Silicon) and Linux (x86_64). Releases up to v3 are named `velo-llvm-*`. Unpack one and set `GRIMACE_LLVM_ROOT` to it:
 
 ```sh
-tar -xJf velo-llvm-v1-macos-arm64.tar.xz
-cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=/path/to/velo-toolchain/cmake/velo-ce.cmake -DVELO_ARCH=sh3 -DVELO_LLVM_ROOT=$PWD/velo-llvm-v1-macos-arm64
+tar -xJf velo-llvm-v3-macos-arm64.tar.xz
+cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=/path/to/grimace/cmake/toolchain.cmake -DGRIMACE_ARCH=sh3 -DGRIMACE_LLVM_ROOT=$PWD/velo-llvm-v3-macos-arm64
 ```
 
-For jornada-72x-tools, set `JORNADA_LLVM_ROOT` to the unpacked folder, or link it as `llvm` in the jornada-72x-tools checkout. Its `armv4-unknown-none-wince` target follows Microsoft's Windows CE ARM calling standard, which no LLVM release has.
-
-The MIPS target doesn't need this: velo-toolchain uses Homebrew's or the distribution's LLVM for MIPS.
+MIPS and x86 don't need this: grimace works with Homebrew's or the distribution's LLVM for those.
 
 ## What's in it
 
-`clang`, `ld.lld`, `llvm-ar`, `llvm-ranlib`, `llvm-rc`, `llvm-objcopy`, `llvm-strip`, `llvm-objdump`, `llvm-readobj`, `llvm-readelf`, `llvm-nm`, `llvm-size`, `llvm-symbolizer`, `llvm-addr2line`, `llvm-mc`, and clang's headers. From v3, also libc++'s headers (`include/c++/v1`) and sources (`share/libcxx/src`), which jornada-72x-tools uses for C++ standard library support with its own configuration. Release build with assertions on, since the SuperH backend is experimental and the Windows CE ARM ABI is new: a compiler bug stops with an error instead of producing bad code.
+`clang`, `ld.lld`, `llvm-ar`, `llvm-ranlib`, `llvm-rc`, `llvm-objcopy`, `llvm-strip`, `llvm-objdump`, `llvm-readobj`, `llvm-readelf`, `llvm-nm`, `llvm-size`, `llvm-symbolizer`, `llvm-addr2line`, `llvm-mc`, and clang's headers. From v3, also libc++'s headers (`include/c++/v1`) and sources (`share/libcxx/src`), which grimace uses for C++ standard library support with its own configuration. Release build with assertions on, since the SuperH backend is experimental and the Windows CE ARM ABI is new: a compiler bug stops with an error instead of producing bad code.
 
 ## Building a release
 
@@ -26,7 +24,7 @@ The scripts in `scripts/` also work locally, given an llvm-project checkout:
 ```sh
 scripts/configure.sh ../llvm-project build
 scripts/build.sh build
-scripts/package.sh build ../llvm-project velo-llvm-local dist
+scripts/package.sh build ../llvm-project llvm-local dist
 ```
 
 ## Licence

@@ -29,9 +29,9 @@ cp "$source_dir/llvm/LICENSE.TXT" "$staging/LICENSE.TXT"
 commit="$(git -C "$source_dir" rev-parse HEAD)"
 cat > "$staging/README.txt" <<README
 LLVM with the SuperH (SH-3, Windows CE), ARM (Windows CE) and MIPS targets,
-for velo-toolchain and jornada-72x-tools.
+for grimace.
 
-Built from https://github.com/Gadgetoid/llvm-project
+Built from https://github.com/grimace-sdk/llvm-project
 commit $commit
 
 Tools: clang, ld.lld, llvm-ar, llvm-ranlib, llvm-rc, llvm-objcopy,
@@ -39,7 +39,7 @@ llvm-strip, llvm-objdump, llvm-readobj, llvm-readelf, llvm-nm, llvm-size,
 llvm-symbolizer, llvm-addr2line, llvm-mc.
 
 libc++'s headers are in include/c++/v1 and its sources in share/libcxx/src, without a
-__config_site: jornada-72x-tools supplies its own and builds the parts it uses.
+__config_site: grimace supplies its own and builds the parts it uses.
 
 LLVM is under the Apache License v2.0 with LLVM Exceptions; see LICENSE.TXT.
 README
