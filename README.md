@@ -1,6 +1,6 @@
 # llvm-builds
 
-Prebuilt LLVM for [grimace](https://github.com/grimace-sdk/grimace): clang, lld and the LLVM tools with the SuperH (SH-3, Windows CE), ARM (Windows CE) and MIPS targets, from the `wince-arm` branch of [grimace-sdk/llvm-project](https://github.com/grimace-sdk/llvm-project/tree/wince-arm), which builds on `wince-sh3`. Its `armv4-unknown-none-wince` target follows Microsoft's Windows CE ARM calling standard, which no LLVM release has.
+Prebuilt LLVM for [grimace](https://github.com/grimace-sdk/grimace): clang, lld and the LLVM tools with the SuperH (SH-3, Windows CE), ARM (Windows CE) and MIPS targets, from the `wince-arm` branch of [grimace-sdk/llvm-project](https://github.com/grimace-sdk/llvm-project/tree/wince-arm), which builds on `wince-sh3`. Its `armv4-unknown-none-wince` target follows Microsoft's Windows CE ARM calling standard, which no LLVM release has. Its `armv4t-unknown-none-wincecoff` target emits Microsoft ARM COFF objects, with the Microsoft C++ ABI, for linking with Platform Builder libraries.
 
 Downloads are on the [releases](../../releases) page, for macOS (Apple Silicon) and Linux (x86_64). Releases up to v3 are named `velo-llvm-*`. Unpack one and set `GRIMACE_LLVM_ROOT` to it:
 
